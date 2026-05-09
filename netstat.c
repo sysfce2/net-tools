@@ -463,6 +463,17 @@ static void prg_cache_load(void)
 		    continue;
 		if (cmdllen < sizeof(cmdlbuf) - 1)
 		    cmdlbuf[cmdllen]='\0';
+                else
+                    // cmdlbuf[sizeof(cmdlbuf) - 1) is already \0
+                    cmdllen = sizeof(cmdlbuf) - 1;
+                // remove all embedded control chars
+                for(int i=0; i < cmdllen; i++) {
+                  char c = cmdlbuf[i];
+                  if (c == 0) // we dont process arguments
+                      break;
+                  if (c < ' ' || c > '~') // safe 7bit ASCII
+                      cmdlbuf[i] = '.';
+                }
 		if (cmdlbuf[0] == '/' && (cmdlp = strrchr(cmdlbuf, '/')))
 		    cmdlp++;
 		else
