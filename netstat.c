@@ -466,11 +466,11 @@ static void prg_cache_load(void)
                 else
                     // cmdlbuf[sizeof(cmdlbuf) - 1) is already \0
                     cmdllen = sizeof(cmdlbuf) - 1;
-                // remove all embedded \0 and escape controls
+                // remove all embedded controls
                 for(int i=0; i < cmdllen; i++) {
                   char c = cmdlbuf[i];
                   if (c == 0) // we dont process arguments
-                      continue;
+                      break;
                   if (c < ' ' || c > '~') // safe 7bit ASCII
                       cmdlbuf[i] = '.';
                 }
