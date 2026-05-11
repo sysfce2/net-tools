@@ -215,8 +215,8 @@ Include information related to networking timers.
 .TP
 .BR \-p ", " \-\-program
 Show the PID and name of the program (this is not trustworthy) to which each socket belongs.
-A hyphen is shown if the user has no permission to inspect the other process.
-if socket belongs to the kernel (e.g. a kernel service,
+A hyphen is shown if the user has no permission to inspect the other process,
+or if the socket belongs to the kernel (e.g. a kernel service,
 or the process has exited but the socket hasn't finished closing yet).
 .TP
 .BR \-l ", " \-\-listening
@@ -225,7 +225,7 @@ Show only listening sockets.  (These are omitted by default.)
 .BR \-a ", " \-\-all
 Show both listening and non-listening sockets.  With the
 .B \-\-interfaces
-option, show interfaces that are not up
+option, show interfaces that are not up.
 .TP
 .B \-F
 Print routing information from the FIB.  (This is the default.)
@@ -376,10 +376,9 @@ SO_WAITDATA
 .RB ( W )
 or SO_NOSPACE
 .RB ( N ).
-SO_ACCECPTON
-is used on unconnected sockets if their corresponding
-processes are waiting for a connect request. The other flags are not
-of normal interest.
+SO_ACCECPTON is used on unconnected sockets if their corresponding
+processes are waiting for a connect request.
+The other flags are not of normal interest.
 .TP
 .B "Type"
 There are several types of socket access:
@@ -410,7 +409,7 @@ Who ever knows what the future will bring us - just fill in here :-)
 
 .TP
 .B "State"
-This field will contain one of the following Keywords:
+This field will contain one of the following keywords:
 
 .RS
 .TP
