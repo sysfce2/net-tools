@@ -1,21 +1,31 @@
 name: Compile net-tools
 
+permissions: {} # overwritten below
+
 on:
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
-    permissions:
-      contents: read
-      pull-requests: write
+    name: Compile with make
+    permissions: {}
+      # contents: read
+      # pull-requests: write
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: checkout
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      with:
+        persist-credentials: false
 
     - name: install-dev
       run: sudo apt-get install libbluetooth-dev libselinux1-dev gettext
