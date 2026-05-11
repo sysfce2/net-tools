@@ -9,7 +9,7 @@ net-tools.
 HACKERS WAY
 -----------
 cd /usr/src ; tar xvzf net-tools*.tar.gz
-apt install libbluetooth-dev libselinux1-dev gettext build-essential
+apt install libbluetooth-dev libselinux1-dev gettext bash kernel-headers build-essential
 less Makefile ; make config ; make ; make -n install
 sudo make install
 
@@ -29,14 +29,20 @@ To accept all default answers, use
 
   yes "" | make config
 
+if you are confident your system has all required headers, you can use
+the following command to install with all features:
+
+  yes | make config
+
 
 
 COMPILE
 -------
 To compile simply use "make -j".
 
-There should be no warnings or errors.
+There should be no warnings or errors. (see TODO)
 
+on some Musl systems like Alpine use "LDLIBS=-lintl make" instead.
 
 
 INSTALLATION
