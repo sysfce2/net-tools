@@ -39,7 +39,7 @@ pr_ash(const char *ptr)
 
     p[0] = '[';
     p++;
-    while (ptr[i] != 0xc9 && ptr[i] != 0xff && (i < ASH_ALEN))
+    while ((unsigned char)ptr[i] != 0xc9 && (unsigned char)ptr[i] != 0xff && (i < ASH_ALEN))
 	sprintf(p++, "%1x", ptr[i++]);
     *(p++) = ']';
     *p = 0;

@@ -269,7 +269,7 @@ int main(int argc, char **argv)
     extern struct aftype inet6_aftype;
     struct sockaddr_in6 *sin6 = (struct sockaddr_in6 *)&_sa;
     struct in6_ifreq ifr6;
-    unsigned long prefix_len;
+    long prefix_len;
     char *cp;
 #endif
 #if HAVE_AFINET
