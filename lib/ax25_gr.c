@@ -36,10 +36,11 @@
 
 int AX25_rprint(int options)
 {
-    FILE *f = fopen(_PATH_PROCNET_AX25_ROUTE, "r");
     char buffer[256];
     int use;
+    FILE *f = fopen(_PATH_PROCNET_AX25_ROUTE, "r");
 
+    (void)options; /* unused */
     if (f == NULL) {
         perror(_PATH_PROCNET_AX25_ROUTE);
 	printf(_("AX.25 not configured in this system.\n"));	/* xxx */

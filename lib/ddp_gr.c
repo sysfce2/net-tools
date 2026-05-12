@@ -61,8 +61,8 @@ int DDP_rprint(int options)
     char oflags[32];
     char *hdr = "Destination     Gateway         Device          Flags";
 
+    (void)options; /* unused */
     fp = fopen(_PATH_PROCNET_ATALK_ROUTE, "r");
-
     if (!fp) {
         perror("Error opening " _PATH_PROCNET_ATALK_ROUTE);
         fprintf(stderr, "DDP (AppleTalk) not configured on this system.\n");

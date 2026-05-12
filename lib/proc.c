@@ -96,6 +96,7 @@ int proc_guess_fmt(const char *name, FILE *fh, ...)
     int flag = 0;
     va_list ap;
 
+    (void)name; /* unused */
     if (!fgets(buf, (sizeof buf) - 1, fh))
 	return -1;
     strcat(buf, "\0");

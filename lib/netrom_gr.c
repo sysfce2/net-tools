@@ -37,6 +37,7 @@ int NETROM_rprint(int options)
     /*int ext = options & FLAG_EXT;
        int numeric = options & FLAG_NUM_HOST; */
 
+    (void)options; /* unused */
     if (!f1) perror(_PATH_PROCNET_NR_NODES);
     if (!f2) perror(_PATH_PROCNET_NR_NEIGH);
 

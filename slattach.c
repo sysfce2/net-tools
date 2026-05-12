@@ -607,6 +607,7 @@ static void
 sig_catch(int sig)
 {
 /*  (void) signal(sig, sig_catch); */
+  (void)sig; /* unused */
   tty_close();
   exit(0);
 }

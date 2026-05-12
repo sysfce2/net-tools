@@ -60,10 +60,10 @@ int rprint_fib6(int ext, int numeric)
     char addr6[128], naddr6[128];
     struct sockaddr_storage sas, sasn;
     int num, iflags, metric, refcnt, use, prefix_len, slen;
-    FILE *fp = fopen(_PATH_PROCNET_ROUTE6, "r");
-
     char addr6p[8][5], saddr6p[8][5], naddr6p[8][5];
 
+    (void)ext; /* unused */
+    FILE *fp = fopen(_PATH_PROCNET_ROUTE6, "r");
     if (!fp) {
 	perror(_PATH_PROCNET_ROUTE6);
         printf(_("INET6 (IPv6) not configured in this system.\n"));

@@ -234,6 +234,7 @@ FILE *procinfo;
 #define SELINUX_WIDTH1(s) SELINUX_WIDTH2(s)
 #define SELINUX_WIDTH2(s) #s
 
+#if HAVE_AFUNIX || HAVE_AFINET
 #define PRG_HASH_SIZE 211
 
 static struct prg_node {
@@ -246,6 +247,7 @@ static struct prg_node {
 static char prg_cache_loaded = 0;
 
 #define PRG_HASHIT(x) ((x) % PRG_HASH_SIZE)
+#endif
 
 #define PROGNAME_BANNER "PID/Program name"
 #define SELINUX_BANNER "Security Context"
@@ -273,6 +275,7 @@ static char prg_cache_loaded = 0;
 #define PATH_CMDLINE	"cmdline"
 #define PATH_CMDLINEl       strlen(PATH_CMDLINE)
 
+#if HAVE_AFUNIX || HAVE_AFINET
 static void prg_cache_add(unsigned long inode, char *name, const char *scon)
 {
     unsigned hi = PRG_HASHIT(inode);
@@ -337,6 +340,7 @@ static void prg_cache_clear(void)
 	    }
     prg_cache_loaded = 0;
 }
+#endif
 
 static void wait_continous(void)
 {
@@ -344,6 +348,7 @@ static void wait_continous(void)
     sleep(1);
 }
 
+#if HAVE_AFUNIX || HAVE_AFINET
 static int extract_type_1_socket_inode(const char lname[], unsigned long * inode_p) {
 
     /* If lname is of the form "socket:[12345]", extract the "12345"
@@ -369,8 +374,6 @@ static int extract_type_1_socket_inode(const char lname[], unsigned long * inode
     return(0);
 }
 
-
-
 static int extract_type_2_socket_inode(const char lname[], unsigned long * inode_p) {
 
     /* If lname is of the form "[0000]:12345", extract the "12345"
@@ -389,8 +392,6 @@ static int extract_type_2_socket_inode(const char lname[], unsigned long * inode
     }
     return(0);
 }
-
-
 
 
 static void prg_cache_load(void)
@@ -510,6 +511,7 @@ static void prg_cache_load(void)
 	fprintf(stderr, _("(Not all processes could be identified, non-owned process info\n"
 			 " will not be shown, you would have to be root to see it all.)\n"));
 }
+#endif
 
 #if HAVE_AFNETROM
 static const char *netrom_state[] =
@@ -685,6 +687,7 @@ static void igmp_do_one(int lnr, const char *line,const char *prot)
     int num, idx, refcnt;
     char* offset;
 
+    (void)prot; /* unused */
     if (lnr == 0) {
 	/* IPV6 ONLY */
 	/* igmp6 file does not have any comments on first line */
@@ -1473,6 +1476,7 @@ static void unix_do_one(int nr, const char *line, const char *prot)
     void *d;
     unsigned long refcnt, proto, flags, inode;
 
+    (void)prot; /* unused */
     if (nr == 0) {
 	if (strstr(line, "Inode"))
 	    has |= HAS_INODE;
@@ -1867,6 +1871,7 @@ static void l2cap_do_one(int nr, const char *line, const char *prot)
     int num;
     const char *bt_state, *bt_sec_level;
 
+    (void)nr; (void)prot; /* unused */
     num = sscanf(line, "%17s (%u) %17s (%u) %d %d 0x%04x 0x%04x %d %d %d",
 	daddr, &dtype, saddr, &stype, &state, &psm, &dcid, &scid, &imtu, &omtu, &sec_level);
 
@@ -1923,6 +1928,7 @@ static void rfcomm_do_one(int nr, const char *line, const char *prot)
     int num;
     const char *bt_state;
 
+    (void)nr; (void)prot; /* unused */
     num = sscanf(line, "%17s %17s %d %d", daddr, saddr, &state, &channel);
     if (num < 4) {
 	fprintf(stderr, _("warning, got bogus rfcomm line.\n"));
@@ -2495,7 +2501,9 @@ int main
 	if (!flag_cnt || i)
 	    break;
         wait_continous();
+#if HAVE_AFUNIX || HAVE_AFINET
 	prg_cache_clear();
+#endif
     }
     return (i);
 }

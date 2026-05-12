@@ -68,8 +68,8 @@ static int INET_setroute(int action, int options, char **args)
     long clk_tck = ticks_per_second();
     struct sockaddr_storage sas;
 
+    (void)options; /* unused */
     xflag = 0;
-
     if (!strcmp(*args, "#net")) {
 	xflag = 1;
 	args++;

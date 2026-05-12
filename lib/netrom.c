@@ -80,6 +80,8 @@ static const char *NETROM_sprint(const struct sockaddr_storage *sasp, int numeri
     const struct sockaddr_ax25 *ax25_sap = (const struct sockaddr_ax25 *)sasp;
     const struct sockaddr *sap = (const struct sockaddr *)sasp;
     char buf[64];
+
+    (void)numeric; /* unused */
     if (sap->sa_family == 0xFFFF || sap->sa_family == 0)
 	return safe_strncpy(buf, _("[NONE SET]"), sizeof(buf));
     return NETROM_print(ax25_sap->sax25_call.ax25_call);
@@ -99,6 +101,7 @@ static int NETROM_input(int type, char *bufp, struct sockaddr_storage *sasp)
     char *orig, c;
     unsigned int i;
 
+    (void)type; /* unused */
     sap->sa_family = netrom_aftype.af;
     ptr = ax25_sap->sax25_call.ax25_call;
 

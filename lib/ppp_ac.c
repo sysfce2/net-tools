@@ -33,6 +33,7 @@
 /* Start the VJ-SLIP encapsulation on the file descriptor. */
 int PPP_activate(int fd)
 {
+    (void)fd; /* unused */
     fprintf(stderr, _("Sorry, use pppd!\n"));	/* FIXME */
     return (-1);
 }

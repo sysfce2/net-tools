@@ -23,12 +23,14 @@ extern struct hwtype ether_hwtype;
 
 static const char *pr_tunnel(const char *ptr)
 {
+    (void)ptr; /* unused */
     return ("");
 }
 
 
 static int in_tunnel(char *bufp, struct sockaddr_storage *sasp)
 {
+    (void)bufp; (void)sasp; /*unused */
     return (-1);
 }
 

@@ -49,7 +49,7 @@ static int usage(const int rc)
 
 int NETROM_rinput(int action, int ext, char **args)
 {
-
+    (void)action; (void)ext; (void)args; /* unused */
     fprintf(stderr, _("NET/ROM: this needs to be written\n"));
     return (E_NOSUPP);
 }

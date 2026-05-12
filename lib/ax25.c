@@ -71,6 +71,7 @@ static const char *
     const struct sockaddr *sap = (const struct sockaddr *)sasp;
     static char buf[64];
 
+    (void)numeric; /* 7nused */
     if (sap->sa_family == 0xFFFF || sap->sa_family == 0)
 	return safe_strncpy(buf, _("[NONE SET]"), sizeof(buf));
     return (AX25_print(((const struct sockaddr_ax25 *) sasp)->sax25_call.ax25_call));
@@ -89,6 +90,7 @@ static int AX25_input(int type, char *bufp, struct sockaddr_storage *sasp)
     char *orig, c;
     int i;
 
+    (void)type; /* unused */
     sap->sa_family = ax25_aftype.af;
     ptr = ((struct sockaddr_ax25 *) sasp)->sax25_call.ax25_call;
 

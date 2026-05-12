@@ -63,6 +63,7 @@ static int INET6_setroute(int action, int options, char **args)
     char *devname = NULL;
     char *cp;
 
+    (void)options; /* unused */
     if (*args == NULL)
 	return usage(E_OPTERR);
 

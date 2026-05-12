@@ -39,6 +39,7 @@
 /* Start the PPP encapsulation on the file descriptor. */
 static int do_ppp(int fd)
 {
+    (void)fd; /* unused */
     fprintf(stderr, _("You cannot start PPP with this program.\n"));
     return -1;
 }

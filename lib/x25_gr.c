@@ -65,6 +65,7 @@ int X25_rprint(int options)
 	char *p;
 	int  digits;
 
+        (void)options; /* unused */
 	if(f==NULL)
 	{
 		printf( _("X.25 not configured in this system.\n")); /* xxx */

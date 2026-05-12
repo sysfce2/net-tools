@@ -51,6 +51,7 @@ static const char *UNSPEC_sprint(const struct sockaddr_storage *sasp, int numeri
     const struct sockaddr *sap = (const struct sockaddr *)sasp;
     static char buf[64];
 
+    (void)numeric; /* unused */
     if (sap->sa_family == 0xFFFF || sap->sa_family == 0)
 	return safe_strncpy(buf, _("[NONE SET]"), sizeof(buf));
     return (UNSPEC_print(sap->sa_data));
@@ -72,6 +73,7 @@ static const char *UNIX_sprint(const struct sockaddr_storage *sasp, int numeric)
     const struct sockaddr *sap = (const struct sockaddr *)sasp;
     static char buf[64];
 
+    (void)numeric; /* unused */
     if (sap->sa_family == 0xFFFF || sap->sa_family == 0)
 	return safe_strncpy(buf, _("[NONE SET]"), sizeof(buf));
     return (UNIX_print(sap->sa_data));

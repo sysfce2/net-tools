@@ -43,6 +43,7 @@ ec_sprint(const struct sockaddr_storage *sasp, int numeric)
 {
     const struct sockaddr_ec *sec = (const struct sockaddr_ec *)sasp;
 
+    (void)numeric; /* unused */
     if (sasp->ss_family != AF_ECONET)
 	return _("[NONE SET]");
 
@@ -54,6 +55,8 @@ ec_input(int type, char *bufp, struct sockaddr_storage *sasp)
 {
     struct sockaddr_ec *sec = (struct sockaddr_ec *) sasp;
     int net, stn;
+
+    (void)type; /* unused */
     switch (sscanf(bufp, "%d.%d", &net, &stn)) {
     case 2:
 	sec->addr.station = stn;

@@ -68,6 +68,8 @@ static const char *
 X25_sprint(const struct sockaddr_storage *sasp, int numeric)
 {
   const struct sockaddr *sap = (const struct sockaddr *)sasp;
+
+  (void)numeric; /* unused */
   if (sap->sa_family == 0xFFFF || sap->sa_family == 0)
     return( _("[NONE SET]"));
   return(X25_print(((struct sockaddr_x25 *)sasp)->sx25_addr.x25_addr));
@@ -85,6 +87,7 @@ X25_input(int type, char *bufp, struct sockaddr_storage *sasp)
   char *p;
   unsigned int sigdigits;
 
+  (void)type; /* unused */
   sap->sa_family = x25_aftype.af;
   ptr = ((struct sockaddr_x25 *)sap)->sx25_addr.x25_addr;
 

@@ -72,6 +72,7 @@ static const char *
     if (sap->sa_family == 0xFFFF || sap->sa_family == 0)
 	return _("[NONE SET]");
 
+    (void)numeric; /* unused */
     return ROSE_print(rose_sap->srose_addr.rose_addr);
 }
 
@@ -81,6 +82,7 @@ static int ROSE_input(int type, char *bufp, struct sockaddr_storage *sasp)
     char *ptr;
     int i, o;
 
+    (void)type; /* unused */
     sap->sa_family = rose_aftype.af;
     ptr = ((struct sockaddr_rose *) sasp)->srose_addr.rose_addr;
 

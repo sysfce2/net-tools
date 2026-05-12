@@ -39,7 +39,7 @@ extern struct aftype ipx_aftype;
 
 int IPX_rinput(int action, int ext, char **args)
 {
-
+    (void)action; (void)ext; (void)args; /* unused */
     fprintf(stderr, _("IPX: this needs to be written\n"));
     return (E_NOSUPP);
 }

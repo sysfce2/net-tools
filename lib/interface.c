@@ -424,7 +424,9 @@ static int ipx_getaddr(int sock, int ft, struct ifreq *ifr)
 int if_fetch(struct interface *ife)
 {
     struct ifreq ifr;
+#if HAVE_ECONET || HAVE_AFATALK || HAVE_AFINET || HAVE_AFIPX
     int fd;
+#endif
     const char *ifname = ife->name;
 
     safe_strncpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));

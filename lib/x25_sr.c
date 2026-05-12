@@ -62,6 +62,7 @@ static int X25_setroute(int action, int options, char **args)
   char target[128];
   signed int sigdigits;
 
+  (void)options; /* unused */
   if (*args == NULL)
 	return usage(E_OPTERR);
 

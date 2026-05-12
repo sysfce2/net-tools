@@ -46,6 +46,7 @@ int ROSE_rprint(int options)
     char buffer1[256], buffer2[256];
     int i, neigh, use;
 
+    (void)options; /* unused */
     f2 = fopen(_PATH_PROCNET_ROSE_NEIGH, "r");
     f1 = fopen(_PATH_PROCNET_ROSE_NODES, "r");
     if (f1 == NULL) {

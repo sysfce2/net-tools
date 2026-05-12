@@ -108,6 +108,7 @@ pr_sash(const struct sockaddr_storage *sasp, int numeric)
     const struct sockaddr *sap = (const struct sockaddr *)sasp;
     static char buf[64];
 
+    (void)numeric; /* unused */
     if (sap->sa_family != AF_ASH)
 	return safe_strncpy(buf, "[NONE SET]", 64);
     return pr_ash(sap->sa_data);

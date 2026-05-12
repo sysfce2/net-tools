@@ -91,9 +91,11 @@ int opt_v = 0;			/* debugging output flag        */
 int addr_family = 0;		/* currently selected AF        */
 
 /* for ipv4 add/del modes */
+#ifdef HAVE_AFINET
 static int get_nmbc_parent(char *parent, in_addr_t *nm, in_addr_t *bc);
 static int set_ifstate(char *parent, in_addr_t ip, in_addr_t nm, in_addr_t bc,
 		       int flag);
+#endif
 
 static int if_print(char *ifname)
 {
@@ -264,7 +266,9 @@ int main(int argc, char **argv)
     struct ifreq ifr;
     int goterr = 0, didnetmask = 0, neednetmask=0;
     char **spp;
+#if HAVE_AFINET || HAVE_AFINET6
     int fd;
+#endif
 #if HAVE_AFINET6
     extern struct aftype inet6_aftype;
     struct sockaddr_in6 *sin6 = (struct sockaddr_in6 *)&_sa;
@@ -1076,6 +1080,8 @@ struct ifcmd {
     int baselen;
 };
 
+
+#ifdef HAVE_AFINET
 static unsigned char searcher[256];
 
 static int set_ip_using(const char *name, int c, unsigned long ip)
@@ -1153,6 +1159,7 @@ static int get_nmbc_parent(char *parent,
     return 0;
 }
 
+
 static int set_ifstate(char *parent, in_addr_t ip, in_addr_t nm, in_addr_t bc,
 		       int flag)
 {
@@ -1192,3 +1199,4 @@ static int set_ifstate(char *parent, in_addr_t ip, in_addr_t nm, in_addr_t bc,
 	return -1;
     return 0;
 }
+#endif
