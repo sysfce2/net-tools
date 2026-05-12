@@ -34,6 +34,7 @@ the following command to install with all features:
 
   yes | make config
 
+Note: Econet, DECNet and STRIP are not contained in normal Linux header.
 
 
 COMPILE
